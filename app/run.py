@@ -31,14 +31,6 @@ def tokenize(text):
 engine = create_engine('sqlite:///../data/DisasterResponse.db')
 df = pd.read_sql_table('labeled_messages', engine)
 engine.dispose()
-
-
-print(list(df[df['genre']=='news'].drop(['message', 'genre', 'id', 'original'], axis=1).sum().sort_values(ascending=False).index))
-print(df[df['genre']=='news'].drop(['message', 'genre', 'id', 'original'], axis=1).sum().sort_values(ascending=False).values)
-print(df[df['genre']=='direct'].drop(['message', 'genre', 'id', 'original'], axis=1).sum().sort_values(ascending=False).values)
-print(df[df['genre']=='social'].drop(['message', 'genre', 'id', 'original'], axis=1).sum().sort_values(ascending=False).values)
-# print(df.drop(['message', 'genre', 'id', 'original'], axis=1).sum().sort_values(ascending=False).index)
-
 model = joblib.load("../models/classifier.pkl")
 
 
